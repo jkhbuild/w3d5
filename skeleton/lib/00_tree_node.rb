@@ -8,12 +8,20 @@ class PolyTreeNode
     end
 
     def parent=(new_value=nil)
-        
+        old_parent = @parent
         @parent = new_value
-        if new_value.nil?
-            return nil
-        else !new_value.children.include?(self)
+
+        return nil if @parent.nil? || old_parent.nil?
+
+        # if old_parent == nil
+        #     return nil 
+        # else
+        #     old_parent.children.delete_at(old_parent.children.index(self))
+        # end
+
+        if !new_value.children.include?(self)
             new_value.children << self
+            old_parent.children.delete_at(old_parent.children.index(self))
         end
     end
 
