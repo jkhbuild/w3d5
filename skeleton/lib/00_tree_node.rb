@@ -47,22 +47,11 @@ class PolyTreeNode
 
         queue = [self]
         until queue.empty?
-            instance = queue.pop
+            instance = queue.shift
 
             return instance if instance.value == target
 
-            instance.children.each do |child|
-            queue << child
-            end
-
-            # instance.children.each do |child|
-            #     debugger
-            #     if child.value == target
-            #         return child.value
-            #     end
-
-            # queue = self.children + queue
-            end
+            queue += instance.children
         end
         nil
     end
